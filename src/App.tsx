@@ -1,12 +1,12 @@
 import Navbar from "components/Navbar";
-import TextArea from "components/TextArea";
+import Core from "components/Core";
 import DescriptionArea from "components/DescriptionArea";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <TextArea />
+      <Core />
       <DescriptionArea />
     </div>
   );
