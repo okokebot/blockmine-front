@@ -1,6 +1,6 @@
-import Navbar from "components/Navbar";
-import Core from "components/Core";
-import DescriptionArea from "components/DescriptionArea";
+import { Navbar } from "components/Navbar";
+import { Core } from "components/Core";
+import { DescriptionArea } from "components/DescriptionArea";
 
 function App() {
   return (
