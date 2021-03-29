@@ -4,33 +4,27 @@ import {
 	TextArea,
 } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
-// import axios from 'axios';
-
+import axios from 'axios';
 
 export const Core = () => {
   const [text, setText] = useState('');
   const [convertedText, setConvertedText] = useState('');
 
   const onChangeText = (event: any) => setText(event.target.value);
-  const onChangeConvertedText = (s: string) => setConvertedText(s);
+  const onChangeConvertedText = (s: any) => setConvertedText(s);
 
   const onChange = (event: any) => {
     onChangeText(event)
 
-    // const req = axios.create({
-    //   baseURL: 'http://localhost:8080/blockissues',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'X-Requested-With': 'XMLHttpRequest'
-    //   },
-    //   responseType: 'json'
-    // })
-    // axios.post("http://localhost:8080/blockissues", { text })
-    //   .then(res => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //   })
-    onChangeConvertedText("res")
+    const API_URL = "http://localhost:8080/blockissues"
+    const data = { name: text };
+    axios.post(API_URL, data)
+      .then(res => {
+        onChangeConvertedText(res.data.body)
+      })
+      .catch((data) => {
+      console.log(data)
+    })
   }
 
   return (
