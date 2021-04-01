@@ -17,7 +17,7 @@ export const Core = () => {
     onChangeText(event)
 
     const API_URL = "http://localhost:8080/blockissues"
-    const data = { name: text };
+    const data = { body: text }
     axios.post(API_URL, data)
       .then(res => {
         onChangeConvertedText(res.data.body)
