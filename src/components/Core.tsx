@@ -1,7 +1,9 @@
 import {useState} from 'react';
 import {
 	Form,
-	TextArea,
+  TextArea,
+  Dimmer,
+  Loader
 } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import axios from 'axios';
@@ -9,22 +11,30 @@ import axios from 'axios';
 export const Core = () => {
   const [text, setText] = useState('');
   const [convertedText, setConvertedText] = useState('');
+  const [isRunning, setIsRunning] =  useState(false)
 
   const onChangeText = (event: any) => setText(event.target.value);
   const onChangeConvertedText = (s: any) => setConvertedText(s);
+  const toSetIsRunning = (b: boolean) => setIsRunning(b);
 
   const onChange = (event: any) => {
+    toSetIsRunning(true)
     onChangeText(event)
 
     const API_URL = "http://localhost:8080/blockissues"
     const data = { body: text }
     axios.post(API_URL, data)
       .then(res => {
-        onChangeConvertedText(res.data.body)
+        if (res.data.body !== "") {
+          onChangeConvertedText(res.data.body)
+        } else {
+          onChangeConvertedText("ブロックなし!!")
+        }
+        toSetIsRunning(false)
       })
       .catch((data) => {
       console.log(data)
-    })
+      })
   }
 
   return (
@@ -40,9 +50,9 @@ export const Core = () => {
           </Form>
         </div>
         <div className="column">
-          {/* <Dimmer active={this.state.loading}>
+          <Dimmer active={isRunning}>
             <Loader inverted>変換中</Loader>
-          </Dimmer> */}
+          </Dimmer>
           <Form>
             <TextArea
               placeholder="ここに変換後のテキストが表示されます"
