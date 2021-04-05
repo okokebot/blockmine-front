@@ -8,7 +8,7 @@ import {
 import 'semantic-ui-css/semantic.min.css';
 import axios from 'axios';
 
-export const Core = () => {
+export const Core: React.FunctionComponent = () => {
   const [text, setText] = useState('');
   const [convertedText, setConvertedText] = useState('');
   const [isRunning, setIsRunning] =  useState(false)
@@ -51,7 +51,7 @@ export const Core = () => {
         </div>
         <div className="column">
           <Dimmer active={isRunning}>
-            <Loader inverted>変換中</Loader>
+            <Loader inverted>ブロック確認中</Loader>
           </Dimmer>
           <Form>
             <TextArea

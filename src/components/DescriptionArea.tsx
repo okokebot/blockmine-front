@@ -1,6 +1,6 @@
 import { Message } from 'semantic-ui-react'
 
-export const DescriptionArea = () => {
+export const DescriptionArea: React.FunctionComponent = () => {
   return (
     <Message>
       <Message.Header>What is this?</Message.Header>
