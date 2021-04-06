@@ -1,2 +1,0 @@
-# blockmine-front
-blockmine のフロントエンド
